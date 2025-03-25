@@ -13,11 +13,11 @@
 [0m[[0m[31merror[0m] [0m[0m required: Double[0m
 [0m[[0m[31merror[0m] [0m[0m  def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {[0m
 [0m[[0m[31merror[0m] [0m[0m                                                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:111:34: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.IndexedSeq[Long][0m
-[0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
-[0m[[0m[31merror[0m] [0m[0m      (0 until width * depth).map(_ => hashFunction.hash(s))[0m
-[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:107:66: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: Long[0m
+[0m[[0m[31merror[0m] [0m[0m  def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                 ^[0m
 [0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:140:41: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
 [0m[[0m[31merror[0m] [0m[0m required: Long[0m
