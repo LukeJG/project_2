@@ -6,7 +6,8 @@ import org.apache.spark.rdd._
 
 
 object main{
-
+  val width = 10
+  val trials = 5
   val seed = new java.util.Date().hashCode;
   val rand = new scala.util.Random(seed);
 
@@ -100,7 +101,29 @@ object main{
 
 
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
+  
+    val hash = hash_function(width)  
+    
+    val estimatesRDD = x.map { plate =>
+      val estimates = (1 to trials).map { _ =>
+        val bucket = hash(plate)
+        bucket.toDouble
+      }
+      (plate, estimates)
+    }
+    val allEstimates = estimatesRDD.flatMap { case (_, estimates) => estimates }.collect().toList
 
+    
+    val sortedEstimates = allEstimates.sorted
+    val median = if (sortedEstimates.size % 2 == 1) {
+      sortedEstimates(sortedEstimates.size / 2)
+    } else {
+      val mid = sortedEstimates.size / 2
+      (sortedEstimates(mid - 1) + sortedEstimates(mid)) / 2.0
+    }
+
+    median
+ // TO-DO
   }
 
 

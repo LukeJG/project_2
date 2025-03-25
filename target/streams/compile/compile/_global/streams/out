@@ -8,19 +8,16 @@
 [0m[[0m[31merror[0m] [0m[0m required: project_2.main.BJKSTSketch[0m
 [0m[[0m[31merror[0m] [0m[0m    def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */[0m
 [0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:102:65: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
-[0m[[0m[31merror[0m] [0m[0m required: Double[0m
-[0m[[0m[31merror[0m] [0m[0m  def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:107:66: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
-[0m[[0m[31merror[0m] [0m[0m required: Long[0m
-[0m[[0m[31merror[0m] [0m[0m  def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:140:41: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
-[0m[[0m[31merror[0m] [0m[0m required: Long[0m
-[0m[[0m[31merror[0m] [0m[0m  def exact_F2(x: RDD[String]) : Long = {[0m
-[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:104:16: not found: value hash_function[0m
+[0m[[0m[31merror[0m] [0m[0m    val hash = hash_function(width)  [0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:116:40: diverging implicit expansion for type scala.math.Ordering[B][0m
+[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple9 in object Ordering[0m
+[0m[[0m[31merror[0m] [0m[0m    val sortedEstimates = allEstimates.sorted[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:133:34: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.IndexedSeq[Long][0m
+[0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      (0 until width * depth).map(_ => hashFunction.hash(s))[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
 [0m[[0m[31merror[0m] [0m[0m5 errors found[0m
