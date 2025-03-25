@@ -102,7 +102,7 @@ object main{
 
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
    // TO-DO
-    val hash = hash_function(width)  
+    val hash = new hash_function(width)  
     
     val estimatesRDD = x.map { plate =>
       val estimates = (1 to trials).map { _ =>
@@ -114,7 +114,7 @@ object main{
     val allEstimates = estimatesRDD.flatMap { case (_, estimates) => estimates }.collect().toList
 
     
-    val sortedEstimates = allEstimates.sorted
+    val sortedEstimates = allEstimates.sorted(Ordering[Long])
     val median = if (sortedEstimates.size % 2 == 1) {
       sortedEstimates(sortedEstimates.size / 2)
     } else {
@@ -131,7 +131,7 @@ object main{
     val hashFunction = new four_universal_Radamacher_hash_function
 
     def getHashesForString(s: String): Seq[Int] = {
-      (0 until width * depth).map(_ => hashFunction.hash(s))
+      (0 until width * depth).map(_ => hashFunction.hash(s).toLong)
   }
 
     val hashedRDD: RDD[Seq[Int]] = x.map(getHashesForString)
