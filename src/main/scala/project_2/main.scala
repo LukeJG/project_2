@@ -64,7 +64,7 @@ object main{
     }
   }
 
-  class BJKSTSketch(bucket_in: Set[(String, Int)] ,  z_in: Int, bucket_size_in: Int) extends Serializable {
+  /*class BJKSTSketch(bucket_in: Set[(String, Int)] ,  z_in: Int, bucket_size_in: Int) extends Serializable {
 /* A constructor that requies intialize the bucket and the z value. The bucket size is the bucket size of the sketch. */
 
     var bucket: Set[(String, Int)] = bucket_in
@@ -86,7 +86,7 @@ object main{
     }
   }
 
-
+*/
   def tidemark(x: RDD[String], trials: Int): Double = {
     val h = Seq.fill(trials)(new hash_function(2000000000))
 
@@ -101,7 +101,7 @@ object main{
 
 
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
-  
+   // TO-DO
     val hash = hash_function(width)  
     
     val estimatesRDD = x.map { plate =>
@@ -123,7 +123,7 @@ object main{
     }
 
     median
- // TO-DO
+
   }
 
 

@@ -1,21 +1,21 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:79:45: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:80:45: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
 [0m[[0m[31merror[0m] [0m[0m required: project_2.main.BJKSTSketch[0m
 [0m[[0m[31merror[0m] [0m[0m    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */[0m
 [0m[[0m[31merror[0m] [0m[0m                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:83:59: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:84:59: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
 [0m[[0m[31merror[0m] [0m[0m required: project_2.main.BJKSTSketch[0m
 [0m[[0m[31merror[0m] [0m[0m    def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */[0m
 [0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:104:16: not found: value hash_function[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:105:16: not found: value hash_function[0m
 [0m[[0m[31merror[0m] [0m[0m    val hash = hash_function(width)  [0m
 [0m[[0m[31merror[0m] [0m[0m               ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:116:40: diverging implicit expansion for type scala.math.Ordering[B][0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:117:40: diverging implicit expansion for type scala.math.Ordering[B][0m
 [0m[[0m[31merror[0m] [0m[0mstarting with method Tuple9 in object Ordering[0m
 [0m[[0m[31merror[0m] [0m[0m    val sortedEstimates = allEstimates.sorted[0m
 [0m[[0m[31merror[0m] [0m[0m                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:133:34: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:134:34: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.IndexedSeq[Long][0m
 [0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
 [0m[[0m[31merror[0m] [0m[0m      (0 until width * depth).map(_ => hashFunction.hash(s))[0m
