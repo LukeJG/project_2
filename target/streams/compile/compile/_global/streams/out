@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:72:5: illegal start of simple expression[0m
+[0m[[0m[31merror[0m] [0m[0m    val BJKST_bucket_size = bucket_size_in;z_in[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

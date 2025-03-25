@@ -67,9 +67,9 @@ object main{
 /* A constructor that requies intialize the bucket and the z value. The bucket size is the bucket size of the sketch. */
 
     var bucket: Set[(String, Int)] = bucket_in
-    var z: Int =
+    var z: Int = z_in
 
-    val BJKST_bucket_size = bucket_size_in;z_in
+    val BJKST_bucket_size = bucket_size_in
 
     def this(s: String, z_of_s: Int, bucket_size_in: Int){
       /* A constructor that allows you pass in a single string, zeroes of the string, and the bucket size to initialize the sketch */
@@ -138,12 +138,6 @@ object main{
 // The output should be exactly F2 = sum(Fs^2), where Fs is the number of occurrences of plate s and the sum is taken over all plates.
 // This can be achieved in one line using the map and reduceByKey methods of the RDD class. Run exact_F2 locally and on GCP with 1 driver and 4 machines having 2 x N1 cores. Copy the results to your report. Terminate the program if it runs for longer than 30 minutes.
   def exact_F2(x: RDD[String]) : Long = {
-    val df = spark.read.format("csv").load("data/2014to2017.csv")
-
-
-
-    F2 = sum(Fs^2)
-    return F2
   }
 
 
