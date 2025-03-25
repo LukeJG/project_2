@@ -1,13 +1,12 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:105:16: not found: value hash_function[0m
-[0m[[0m[31merror[0m] [0m[0m    val hash = hash_function(width)  [0m
-[0m[[0m[31merror[0m] [0m[0m               ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:117:40: diverging implicit expansion for type scala.math.Ordering[B][0m
-[0m[[0m[31merror[0m] [0m[0mstarting with method Tuple9 in object Ordering[0m
-[0m[[0m[31merror[0m] [0m[0m    val sortedEstimates = allEstimates.sorted[0m
-[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:109:26: project_2.main.hash_function does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m        val bucket = hash(plate)[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:122:33: value + is not a member of Nothing[0m
+[0m[[0m[31merror[0m] [0m[0m      (sortedEstimates(mid - 1) + sortedEstimates(mid)) / 2.0[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
 [0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:134:34: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.IndexedSeq[Long][0m
 [0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
-[0m[[0m[31merror[0m] [0m[0m      (0 until width * depth).map(_ => hashFunction.hash(s))[0m
+[0m[[0m[31merror[0m] [0m[0m      (0 until width * depth).map(_ => hashFunction.hash(s).toLong)[0m
 [0m[[0m[31merror[0m] [0m[0m                                 ^[0m
 [0m[[0m[31merror[0m] [0m[0mthree errors found[0m

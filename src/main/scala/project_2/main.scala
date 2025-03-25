@@ -130,7 +130,7 @@ object main{
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
     val hashFunction = new four_universal_Radamacher_hash_function
 
-    def getHashesForString(s: String): Seq[Int] = {
+    def getHashesForString(s: String): Seq[Long] = {
       (0 until width * depth).map(_ => hashFunction.hash(s).toLong)
   }
 
