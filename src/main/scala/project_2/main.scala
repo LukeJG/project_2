@@ -105,6 +105,26 @@ object main{
 
 
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
+    val hashFunction = new four_universal_Radamacher_hash_function
+
+    def getHashesForString(s: String): Seq[Int] = {
+      (0 until width * depth).map(_ => hashFunction.hash(s))
+  }
+
+    val hashedRDD: RDD[Seq[Int]] = x.map(getHashesForString)
+
+    val meansRDD: RDD[Seq[Double]] = hashedRDD.map{ hashes =>
+      val groupedHashes = hashes.grouped(width).toSeq
+      groupedHashes.map(group => group.sum.toDouble / group.size)
+  }
+
+    val means: Seq[Double] = meansRDD.collect().flatten
+
+    val sortedMeans = means.sorted
+    val medianIndex = sortedMeans.size / 2
+    val median = sortedMeans(medianIndex)
+
+    median.toLong
 
   }
 
@@ -114,9 +134,16 @@ object main{
     return ans
   }
 
-
+// Implement the exact_F2 function. The function accepts an RDD of strings as an input. 
+// The output should be exactly F2 = sum(Fs^2), where Fs is the number of occurrences of plate s and the sum is taken over all plates.
+// This can be achieved in one line using the map and reduceByKey methods of the RDD class. Run exact_F2 locally and on GCP with 1 driver and 4 machines having 2 x N1 cores. Copy the results to your report. Terminate the program if it runs for longer than 30 minutes.
   def exact_F2(x: RDD[String]) : Long = {
+    val df = spark.read.format("csv").load("data/2014to2017.csv")
 
+
+
+    F2 = sum(Fs^2)
+    return F2
   }
 
 
