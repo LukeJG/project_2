@@ -1,4 +1,26 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:72:5: illegal start of simple expression[0m
-[0m[[0m[31merror[0m] [0m[0m    val BJKST_bucket_size = bucket_size_in;z_in[0m
-[0m[[0m[31merror[0m] [0m[0m    ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:79:45: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: project_2.main.BJKSTSketch[0m
+[0m[[0m[31merror[0m] [0m[0m    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */[0m
+[0m[[0m[31merror[0m] [0m[0m                                            ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:83:59: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: project_2.main.BJKSTSketch[0m
+[0m[[0m[31merror[0m] [0m[0m    def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */[0m
+[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:102:65: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: Double[0m
+[0m[[0m[31merror[0m] [0m[0m  def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:111:34: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : scala.collection.immutable.IndexedSeq[Long][0m
+[0m[[0m[31merror[0m] [0m[0m required: Seq[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      (0 until width * depth).map(_ => hashFunction.hash(s))[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Luke Gearin\Documents\GitHub\project_2\src\main\scala\project_2\main.scala:140:41: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: Long[0m
+[0m[[0m[31merror[0m] [0m[0m  def exact_F2(x: RDD[String]) : Long = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m5 errors found[0m

@@ -105,7 +105,7 @@ object main{
 
 
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
-    val hashFunction = new four_universal_Radamacher_hash_function
+ /*   val hashFunction = new four_universal_Radamacher_hash_function
 
     def getHashesForString(s: String): Seq[Int] = {
       (0 until width * depth).map(_ => hashFunction.hash(s))
@@ -125,7 +125,7 @@ object main{
     val median = sortedMeans(medianIndex)
 
     median.toLong
-
+*/
   }
 
 
