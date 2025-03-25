@@ -114,12 +114,12 @@ object main{
     val allEstimates = estimatesRDD.flatMap { case (_, estimates) => estimates }.collect().toList
 
     
-    val sortedEstimates = allEstimates.sorted(Ordering[Long])
+    val sortedEstimates = allEstimates.sorted
+    val mid = sortedEstimates.size / 2
     val median = if (sortedEstimates.size % 2 == 1) {
-      sortedEstimates(sortedEstimates.size / 2)
+      sortedEstimates(mid)  // Odd number of elements
     } else {
-      val mid = sortedEstimates.size / 2
-      (sortedEstimates(mid - 1) + sortedEstimates(mid)) / 2.0
+      (sortedEstimates(mid - 1) + sortedEstimates(mid)) / 2.0  // Even number of elements
     }
 
     median
@@ -134,7 +134,7 @@ object main{
       (0 until width * depth).map(_ => hashFunction.hash(s).toLong)
   }
 
-    val hashedRDD: RDD[Seq[Int]] = x.map(getHashesForString)
+    val hashedRDD: RDD[Seq[Long]] = x.map(getHashesForString)
 
     val meansRDD: RDD[Seq[Double]] = hashedRDD.map{ hashes =>
       val groupedHashes = hashes.grouped(width).toSeq
