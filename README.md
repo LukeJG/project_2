@@ -52,3 +52,21 @@
   - Trials: 5  
   - Time Elapsed: 166s  
   - Estimate: 5,767,168.0  
+
+---
+
+## BJKST Algorithm Error Analysis
+
+For the BJKST algorithm, the relative error is approximately `1/√width`. We want to achieve an error of ±20%. To do this, we set up the inequality:
+
+`1/√width ≤ 0.2`
+
+Solving for `width`, we get:
+
+`√width ≥ 1/0.2 = 5`
+
+Therefore, the optimal `width` is:
+
+`width ≥ 25`
+
+The smallest width that meets the error requirement is **25**. This value does not depend on the actual value of F0.
