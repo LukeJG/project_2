@@ -63,8 +63,8 @@ object main{
       return if( ( ((a * t3 + b* t2 + c*t + b) % p) & 1) == 0 ) 1 else -1;
     }
   }
-
-  /*class BJKSTSketch(bucket_in: Set[(String, Int)] ,  z_in: Int, bucket_size_in: Int) extends Serializable {
+/*
+  class BJKSTSketch(bucket_in: Set[(String, Int)] ,  z_in: Int, bucket_size_in: Int) extends Serializable {
 /* A constructor that requies intialize the bucket and the z value. The bucket size is the bucket size of the sketch. */
 
     var bucket: Set[(String, Int)] = bucket_in
@@ -85,20 +85,6 @@ object main{
 
     }
   }
-
-*/
-  def tidemark(x: RDD[String], trials: Int): Double = {
-    val h = Seq.fill(trials)(new hash_function(2000000000))
-
-    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,trials).map(i => scala.math.max(accu1(i), accu2(i)))
-    def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,trials).map( i =>  scala.math.max(accu1(i), h(i).zeroes(h(i).hash(s))) )
-
-    val x3 = x.aggregate(Seq.fill(trials)(0))( param1, param0)
-    val ans = x3.map(z => scala.math.pow(2,0.5 + z)).sortWith(_ < _)( trials/2) /* Take the median of the trials */
-
-    return ans
-  }
-
 
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
    // TO-DO
@@ -125,8 +111,120 @@ object main{
     median
 
   }
+*/
+  class BJKSTSketch(bucket_in: Set[(String, Int)], z_in: Int, bucket_size_in: Int) extends Serializable {
+    
+    var bucket: Set[(String, Int)] = bucket_in
+    var z: Int = z_in
+    val BJKST_bucket_size = bucket_size_in
+
+    // Constructor for initializing with a single string
+    def this(s: String, z_of_s: Int, bucket_size_in: Int) = {
+      this(Set((s, z_of_s)), z_of_s, bucket_size_in)
+    }
+
+    // Method to merge two sketches
+    def +(that: BJKSTSketch): BJKSTSketch = {
+      // Combine buckets, then potentially shrink
+      val combinedBucket = this.bucket ++ that.bucket
+      val maxZ = math.max(this.z, that.z)
+      
+      // Create a new sketch with combined bucket and increased z
+      val newSketch = new BJKSTSketch(combinedBucket, maxZ, this.BJKST_bucket_size)
+      newSketch.shrinkBucket()
+      newSketch
+    }
+
+    // Method to add a string to the sketch
+    def add_string(s: String, z_of_s: Int): BJKSTSketch = {
+      // If z_of_s is less than current z, return current sketch
+      if (z_of_s < this.z) return this
+      
+      // Create a new bucket with the added string
+      val newBucket = this.bucket + ((s, z_of_s))
+      val newSketch = new BJKSTSketch(newBucket, this.z, this.BJKST_bucket_size)
+      newSketch.shrinkBucket()
+      newSketch
+    }
+
+    // Helper method to shrink the bucket if it exceeds size
+    private def shrinkBucket(): Unit = {
+      // While bucket is too large, increment z and remove small elements
+      while (bucket.size > BJKST_bucket_size) {
+        z += 1
+        bucket = bucket.filter(_._2 >= z)
+      }
+    }
+
+    // Method to estimate distinct elements
+    def estimate(): Long = {
+      (bucket.size * math.pow(2, z)).toLong
+    }
+  }
+
+  object BJKSTAlgorithm {
+    // Count trailing zeros in binary representation
+    def countTrailingZeros(d: Double): Int = {
+      if (d == 0) return 0
+      math.floor(math.log(d) / math.log(2)).toInt
+    }
+
+    // BJKST main function
+    def BJKST(x: RDD[String], width: Int, trials: Int): Double = {
+      // Run multiple trials and collect estimates
+      val estimates = (1 to trials).map { _ =>
+        // Create a random hash function (simplified representation)
+        val hash = (s: String) => {
+          // Simple hash function that creates a double between 0 and 1
+          val random = new Random(s.hashCode)
+          random.nextDouble()
+        }
+
+        // Perform BJKST sketch for this trial
+        val sketch = x.map { s =>
+          val hashVal = hash(s)
+          val zeros = countTrailingZeros(hashVal)
+          (s, zeros)
+        }.filter(_._2 >= 0)  // Ensure we have valid elements
+        .aggregate(new BJKSTSketch("", 0, width))(
+          (sketch, item) => sketch.add_string(item._1, item._2),
+          (sketch1, sketch2) => sketch1 + sketch2
+        )
+
+        sketch.estimate()
+      }
+
+      // Return median of estimates
+      val sortedEstimates = estimates.sorted
+      val medianIndex = sortedEstimates.length / 2
+      
+      if (sortedEstimates.length % 2 == 0) {
+        // If even number of trials, average the two middle values
+        (sortedEstimates(medianIndex - 1) + sortedEstimates(medianIndex)) / 2.0
+      } else {
+        // If odd number of trials, return the middle value
+        sortedEstimates(medianIndex).toDouble
+      }
+    }
+  }
 
 
+  
+  def tidemark(x: RDD[String], trials: Int): Double = {
+    val h = Seq.fill(trials)(new hash_function(2000000000))
+
+    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,trials).map(i => scala.math.max(accu1(i), accu2(i)))
+    def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,trials).map( i =>  scala.math.max(accu1(i), h(i).zeroes(h(i).hash(s))) )
+
+    val x3 = x.aggregate(Seq.fill(trials)(0))( param1, param0)
+    val ans = x3.map(z => scala.math.pow(2,0.5 + z)).sortWith(_ < _)( trials/2) /* Take the median of the trials */
+
+    return ans
+  }
+
+
+
+/*
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
     val hashFunction = new four_universal_Radamacher_hash_function
 
@@ -150,8 +248,37 @@ object main{
     median.toLong
 
   }
-
-
+*/
+  def Tug_of_War(x: RDD[String], width: Int, depth: Int): Long = {
+    // Count item frequencies first
+    val itemCounts = x.map(item => (item, 1L)).reduceByKey(_ + _)
+    
+    // Perform multiple runs of the Tug-of-War sketch
+    val groupedResults = (1 to (width * depth)).map { _ =>
+      // Create a new hash function for each run
+      val hashFunc = new four_universal_Radamacher_hash_function()
+      
+      // Compute z for this run
+      val z = itemCounts.map { case (item, count) => 
+        count * hashFunc.hash(item)
+      }.sum()
+      
+      z * z  // Square the result
+    }
+    
+    // Group the results into 'width' sized groups and compute means
+    val groupMeans = groupedResults.grouped(width).map { group =>
+      group.sum.toDouble / width
+    }.toArray
+    
+    // Return the median of the group means
+    val sortedMeans = groupMeans.sorted
+    val medianIndex = sortedMeans.length / 2
+    
+    // If even number of means, take the lower middle value
+    sortedMeans(medianIndex).toLong
+  }
+  
   def exact_F0(x: RDD[String]) : Long = {
     val ans = x.distinct.count
     return ans
