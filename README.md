@@ -55,7 +55,7 @@
 
 ---
 
-## BJKST Algorithm Error Analysis
+## BJKST Algorithm Analysis:
 
 For the BJKST algorithm, the relative error is approximately `1/√width`. We want to achieve an error of ±20%. To do this, we set up the inequality:
 
@@ -70,3 +70,7 @@ Therefore, the optimal `width` is:
 `width ≥ 25`
 
 The smallest width that meets the error requirement is **25**. This value does not depend on the actual value of F0.
+
+---
+## Overall Analysis
+   - The **Exact F0** and **Exact F2** algorithms are significantly faster than the **BJKST** and **Tug-of-War** algorithms, both locally and on GCP, suggesting that the **Exact** algorithms are more optimized for performance in terms of time. Moreover, the **Exact** algorithms provide stable and consistent estimates, whereas the **Tug-of-War** and **BJKST** algorithms exhibit some variability in their estimates, particularly on GCP. Overall, the **BJKST** and **Tug-of-War** algorithms have longer runtimes with higher variation in estimates, which follows their more involved and computationally complex nature.
