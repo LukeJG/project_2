@@ -3,7 +3,7 @@ package project_2
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 import org.apache.spark.rdd._
-
+import scala.util.Random
 
 object main{
   val width = 10
@@ -278,7 +278,7 @@ object main{
     // If even number of means, take the lower middle value
     sortedMeans(medianIndex).toLong
   }
-  
+
   def exact_F0(x: RDD[String]) : Long = {
     val ans = x.distinct.count
     return ans
@@ -310,7 +310,9 @@ object main{
         println("Usage: project_2 input_path BJKST #buckets trials")
         sys.exit(1)
       }
-      val ans = BJKST(dfrdd, args(2).toInt, args(3).toInt)
+     // val ans = BJKST(dfrdd, args(2).toInt, args(3).toInt)
+      val ans = BJKSTAlgorithm.BJKST(dfrdd, args(2).toInt, args(3).toInt)
+
 
       val endTimeMillis = System.currentTimeMillis()
       val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
