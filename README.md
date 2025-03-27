@@ -1,3 +1,5 @@
+**Group Members:** Lukas Gearin, Zachary Blest, Elliot Frink
+
 ## 1. **Exact F2**
 
 - **LOCAL**  
